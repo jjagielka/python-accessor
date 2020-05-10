@@ -1,19 +1,15 @@
-Accessor: read nested dictionaries
-==================================
+# Accessor: read nested dictionaries
 
 Build accessor functions using the natural python dot notation.
 
-Installation
-------------
-
+# Installation
 
 ``python-accessor`` is available as a zero-dependency Python package. Install with:
 
     $ pip install python-accessor
 
 
-Usage
------
+## Usage
 
 ```python
 
@@ -21,12 +17,9 @@ Usage
 
     name = _.users.name 
     name(obj)  # equvalent of obj['users']['name']
-
-
 ```
 
-Examples
---------
+## Examples
 
 ```python
 
@@ -71,8 +64,7 @@ list(filter(_.uid > 300, obj['users']))
 # -> [{'uid': 3456}]
 ```
 
-More Examples! :)
------------------
+## More Examples! :)
 
 ```python
 

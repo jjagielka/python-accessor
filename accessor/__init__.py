@@ -1,6 +1,6 @@
-"""This is a docstring.
+"""Access nested dictionaries.
 
-Two lines
+Create functions to manipulate dictionaries smililar to itemgetter.
 """
 
 from functools import wraps
@@ -102,7 +102,7 @@ def select(*getters, **name_getters):
 
 
 def normalize(data, c_getter, select, c_select):
-    """Normalize" semi-structured JSON data into a flat table.
+    """Normalize semi-structured JSON data into a flat table.
 
     Parameters
     ----------
