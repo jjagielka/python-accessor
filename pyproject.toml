@@ -1,0 +1,27 @@
+[project]
+name = "python-accessor"
+version = "1.0.0"
+description = "Access nested dicts"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+authors = [{ name = "Jakub Jagielka", email = "jjagielka@gmail.com" }]
+keywords = ["accessor", "api", "itemgetter", "rest"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+# Changelog = "https://github.com/jjagielka/python-accessor/blob/master/CHANGELOG.md"
+Homepage = "https://github.com/jjagielka/python-accessor"
+Issues = "https://github.com/jjagielka/python-accessor/issues"
+# Documentation = "https://readthedocs.org"
+Repository = "https://github.com/jjagielka/python-accessor"
+
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
