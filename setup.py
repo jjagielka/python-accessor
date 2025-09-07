@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='python-accessor',
-    version='0.0.1',
+    version='1.0.0',
     description='Access nested dicts',
     author='Jakub Jagielka',
     author_email='jjagielka@gmail.com',

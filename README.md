@@ -16,7 +16,7 @@ Build accessor functions using the natural python dot notation.
     from accessor import accessor as _
 
     name = _.users.name 
-    name(obj)  # equvalent of obj['users']['name']
+    name(obj)  # equivalent of obj['users']['name']
 ```
 
 ## Examples
