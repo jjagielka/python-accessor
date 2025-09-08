@@ -4,7 +4,7 @@ Create functions to manipulate dictionaries similar to itemgetter.
 """
 
 from functools import wraps
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Union
 
 import operator
 
@@ -41,6 +41,13 @@ def _str_slice(s):
     return ":".join(["" if x is None else str(x) for x in t])
 
 
+def get(v, k):
+    try:
+        return v[k]
+    except (KeyError, TypeError, IndexError, AttributeError):
+        return None
+
+
 class Accessor(metaclass=Meta):
     """Return a callable object that fetches the given item(s) from its operand.
 
@@ -64,13 +71,10 @@ class Accessor(metaclass=Meta):
     def __getitem__(self, name: Union[str, int, slice]) -> "Accessor":
         def accessor(x: Any) -> Any:
             value = x if self._accessor is None else self._accessor(x)  # self(x)
-            try:
-                if not isinstance(name, (int, slice)) and isinstance(value, list):
-                    return [v[name] for v in value]
-                else:
-                    return value[name]
-            except (KeyError, TypeError, IndexError, AttributeError):
-                return None
+            if not isinstance(name, (int, slice)) and isinstance(value, list):
+                return [get(v, name) for v in value]
+            else:
+                return get(value, name)
 
         # Pre-compute name and path strings
         if isinstance(name, slice):
@@ -99,14 +103,14 @@ def keys(*getters: "Accessor") -> Callable[[Any], tuple]:
     return lambda x: tuple(n._path for n in getters)
 
 
-def items(*getters: "Accessor", prefix: str = "") -> Callable[[Any], Dict[str, Any]]:
+def items(*getters: "Accessor", prefix: str = "") -> Callable[[Any], dict[str, Any]]:
     """Return func extracting names and values of multiple getters as tuple."""
     if prefix:
         return lambda x: {prefix + n._name: n(x) for n in getters}
     return lambda x: {n._name: n(x) for n in getters}
 
 
-def select(*getters: "Accessor", **name_getters: "Accessor") -> Callable[[Any], Dict[str, Any]]:
+def select(*getters: "Accessor", **name_getters: "Accessor") -> Callable[[Any], dict[str, Any]]:
     """Return func extracting values of multiple getters as dict.
 
     getters: list of getters for dict entries with _name key

@@ -1,9 +1,9 @@
 [project]
 name = "python-accessor"
-version = "1.0.0"
+version = "1.0.2"
 description = "Access nested dicts"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
 authors = [{ name = "Jakub Jagielka", email = "jjagielka@gmail.com" }]
 keywords = ["accessor", "api", "itemgetter", "rest"]

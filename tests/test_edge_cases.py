@@ -29,7 +29,7 @@ class TestEdgeCases(unittest.TestCase):
         self.assertIsNone(_.a.b.c(123))
         self.assertIsNone(_.a.b.c(True))
         # Lists are handled specially - they return a list of None values
-        self.assertIsNone(_.a.b.c([1, 2, 3]))
+        self.assertEqual(_.a.b.c([1, 2, 3]), [None, None, None])
 
     def test_missing_keys(self):
         """Test handling of missing keys."""
@@ -164,6 +164,10 @@ class TestEdgeCases(unittest.TestCase):
         # Test that other special characters don't work with dot notation
         self.assertIsNone(_.key_with_dash(data))  # This won't work due to hyphen
         # The others would need bracket notation which isn't implemented
+
+        self.assertEqual(_["key-with-dash"](data), 1)  # This will work though
+        self.assertEqual(_["key.with.dots"](data), 3)
+        self.assertEqual(_["key with spaces"](data), 4)
 
     def test_very_large_structures(self):
         """Test with very large data structures."""
